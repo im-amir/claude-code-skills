@@ -28,7 +28,9 @@ Base branch argument: `$ARGUMENTS`
    - If the diff is empty, say so and stop.
 3. **Load the project's rules.** If any of `CODING_RULES.md`, `CLAUDE.md`, `AGENTS.md`,
    `CONTRIBUTING.md` exist at the repo root (or next to changed files), read them. A
-   violation of an explicit project rule is at least **should fix**.
+   violation of an explicit project rule is at least **should fix**. Only call something
+   a project-rule violation if you read that file in this run and can quote the rule;
+   otherwise judge it on its own merits.
 4. **Read context, not just hunks.** For every changed file, read the whole function or
    component around each hunk, plus direct callers of anything whose signature or
    behavior changed (use Grep). Skip lockfiles, generated code and binary files.
@@ -55,6 +57,7 @@ Exactly this, nothing before the heading:
 
 ```
 ## PR review: <current-branch> → <base> (<N> files, +<added>/-<removed>)
+Rules checked: <files read in step 3, or "none found">
 
 | # | Severity | Location | Problem | Suggested fix |
 |---|----------|----------|---------|---------------|
