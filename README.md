@@ -2,6 +2,10 @@
 
 Claude Code skills I use for safer, faster production work.
 
+![/pr-review running on a branch with three planted bugs](docs/assets/pr-review.gif)
+
+<sub>Real, unedited run of `/pr-review main` on the `demo/pr-review` branch — sped up 5× while it thinks (the real run took 23s).</sub>
+
 | Skill | What it does | Edits files? |
 |-------|--------------|--------------|
 | [`/pr-review`](.claude/skills/pr-review/SKILL.md) | Reviews the branch diff before a PR — bugs, edge cases, security, React/TS issues — as a ranked table | No |
