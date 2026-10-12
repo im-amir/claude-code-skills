@@ -274,7 +274,11 @@ docs/                             design notes + what's planted in each example
 
 ## Why I built these
 
-_TODO: your words here._
+I use Claude Code every day on production work. It's fast, but it also writes code that
+looks right and is quietly wrong: a missing auth check, a `{}` Hasura filter, a "cleanup"
+that changes behavior. These skills are the checks I was already doing by hand, written
+down so the agent does them the same way every time, and has to prove each finding before
+it reports it.
 
 ## License
 
