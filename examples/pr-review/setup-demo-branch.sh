@@ -19,7 +19,6 @@ git checkout -q -b "$BRANCH"
 
 SRC=examples/pr-review/src
 
-# Bug 1: `!item.qty` treats an explicit quantity of 0 as missing, so it is billed as 1.
 cat > "$SRC/cart.ts" <<'TS'
 export type CartItem = { sku: string; name: string; unitPriceCents: number; qty: number | null };
 
@@ -35,8 +34,6 @@ export function cartTotal(items: CartItem[]): number {
 }
 TS
 
-# Bug 2: abort/cleanup removed — a slow response for the previous customer can overwrite
-# the current one, and setState runs after unmount.
 cat > "$SRC/useOrders.ts" <<'TS'
 import { useEffect, useState } from "react";
 
@@ -55,7 +52,6 @@ export function useOrders(customerId: string) {
 }
 TS
 
-# Bug 3: bearer token written to the console.
 cat > "$SRC/api.ts" <<'TS'
 export async function fetchWithAuth(url: string, token: string): Promise<Response> {
   console.log("fetching", url, "with token", token);

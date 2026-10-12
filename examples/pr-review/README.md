@@ -1,15 +1,12 @@
 # pr-review example
 
-`src/` on `main` is correct. `setup-demo-branch.sh` creates branch `demo/pr-review` with
-three planted bugs:
-
-1. `cart.ts` — `if (!item.qty)` bills an explicit quantity of `0` as 1 item.
-2. `useOrders.ts` — the effect's `AbortController` cleanup is removed (stale response race,
-   setState after unmount), and the response is typed `any`.
-3. `api.ts` — the bearer token is written to `console.log`.
+`setup-demo-branch.sh` creates a branch `demo/pr-review` with a small diff to review.
 
 ```bash
-./examples/pr-review/setup-demo-branch.sh    # once; recreates the branch if it exists
+./examples/pr-review/setup-demo-branch.sh    # recreates the branch if it exists
 git checkout demo/pr-review
 claude   # then: /pr-review main
 ```
+
+What's planted is listed in [docs/pr-review.md](../../docs/pr-review.md) — kept out of
+this folder so the skill can't read the answer key.

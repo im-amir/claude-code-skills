@@ -22,3 +22,11 @@ route protected by something outside the repo will be reported as unprotected; t
 deliberate (say so, then ignore).
 
 **Try it.** `/auth0-rbac-check examples/auth0-rbac-check` — one safe route, two broken.
+
+## Planted issues in `examples/auth0-rbac-check`
+
+| Route | Intended rule | State |
+|-------|---------------|-------|
+| `GET /api/me` | any signed-in user, own profile | correct |
+| `GET`/`DELETE /api/admin/users` | `admin` only | no auth check at all |
+| `GET /api/orders/[id]` | owner or `admin` | trusts client-sent `x-user-role` / `x-user-id` headers |

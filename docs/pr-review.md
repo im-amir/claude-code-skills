@@ -21,3 +21,10 @@ changes only — uncommitted work is mentioned, not reviewed.
 
 **Try it.** `examples/pr-review/setup-demo-branch.sh`, check out `demo/pr-review`, run
 `/pr-review main`. Three bugs are planted (see `examples/pr-review/README.md`).
+
+## Planted issues in `demo/pr-review`
+
+1. `cart.ts` — `if (!item.qty)` bills an explicit quantity of `0` as one item.
+2. `useOrders.ts` — the effect's `AbortController` cleanup is removed (stale-response race,
+   setState after unmount); the response is also typed `any`.
+3. `api.ts` — the bearer token is written to `console.log`.

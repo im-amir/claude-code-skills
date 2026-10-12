@@ -20,3 +20,9 @@ running instance. Database-level RLS, triggers and actions' own handlers are out
 
 **Try it.** `/hasura-permission-review` from the repo root — `projects` is correct,
 `orders` is broken.
+
+## Planted issues in `examples/hasura-permission-review`
+
+- `projects` — correct: rows scoped to the caller's org, `owner_id`/`org_id` set from the session.
+- `orders` — `user` select filter is `{}` (and exposes `payment_token`, with aggregations on);
+  `user_id` is client-writable on insert and update.
