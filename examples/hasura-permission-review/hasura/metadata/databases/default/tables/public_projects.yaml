@@ -1,0 +1,50 @@
+table:
+  name: projects
+  schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - org_id
+        - owner_id
+        - name
+        - created_at
+      filter:
+        org_id:
+          _eq: X-Hasura-Org-Id
+      allow_aggregations: false
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        org_id:
+          _eq: X-Hasura-Org-Id
+      set:
+        org_id: X-Hasura-Org-Id
+        owner_id: X-Hasura-User-Id
+      columns:
+        - name
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - name
+      filter:
+        _and:
+          - org_id:
+              _eq: X-Hasura-Org-Id
+          - owner_id:
+              _eq: X-Hasura-User-Id
+      check:
+        org_id:
+          _eq: X-Hasura-Org-Id
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        _and:
+          - org_id:
+              _eq: X-Hasura-Org-Id
+          - owner_id:
+              _eq: X-Hasura-User-Id

@@ -1,0 +1,35 @@
+table:
+  name: orders
+  schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - user_id
+        - org_id
+        - total_cents
+        - status
+        - payment_token
+        - created_at
+      filter: {}
+      allow_aggregations: true
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - user_id
+        - org_id
+        - total_cents
+        - status
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - user_id
+        - status
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
