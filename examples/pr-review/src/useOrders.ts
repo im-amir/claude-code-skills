@@ -6,15 +6,9 @@ export function useOrders(customerId: string) {
   const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
-    const controller = new AbortController();
-    fetch(`/api/customers/${customerId}/orders`, { signal: controller.signal })
-      .then((res) => res.json() as Promise<Order[]>)
-      .then(setOrders)
-      .catch((error: unknown) => {
-        if (error instanceof DOMException && error.name === "AbortError") return;
-        throw error;
-      });
-    return () => controller.abort();
+    fetch(`/api/customers/${customerId}/orders`)
+      .then((res) => res.json())
+      .then((data: any) => setOrders(data));
   }, [customerId]);
 
   return orders;
